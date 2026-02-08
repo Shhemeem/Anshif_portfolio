@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anziio | Anshif TK Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-gold: #ffcc33;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Film Grain Effect */
+        body::after {
+            content: "";
+            position: fixed;
+            top: -150%;
+            left: -150%;
+            width: 300%;
+            height: 300%;
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/Noise_generated_by_silver_halide_grains.jpg");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform:translate(0, 0); }
+            10% { transform:translate(-5%, -10%); }
+            30% { transform:translate(-15%, -5%); }
+            50% { transform:translate(-5%, -25%); }
+            70% { transform:translate(-15%, -15%); }
+            90% { transform:translate(-2%, -5%); }
+        }
+
+        /* Expressive Sections */
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .hero-font {
+            font-family: 'Playfair Display', serif;
+            line-height: 0.85;
+        }
+
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 2.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .logo {
+            font-weight: 900;
+            letter-spacing: 0.4em;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .accent-line {
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            width: 150px;
+            margin: 2rem 0;
+        }
+
+        .image-frame {
+            position: relative;
+            background: #151515;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(255,204,51,0.05), transparent);
+        }
+
+        .gold-pill {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            border-radius: 99px;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* Custom Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            z-index: 101;
+            width: 0%;
+        }
+
+        .btn-play {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .btn-play:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-progress" id="progressBar"></div>
+
+    <nav class="nav-fixed">
+        <div class="logo">ANZIIO</div>
+        <div class="hidden md:flex space-x-12 items-center">
+            <a href="#home" class="text-[0.65rem] uppercase tracking-[0.3em] hover:text-[#ffcc33] transition-colors">Surface</a>
+            <a href="#about" class="text-[0.65rem] uppercase tracking-[0.3em] hover:text-[#ffcc33] transition-colors">The Vision</a>
+            <a href="#contact" class="text-[0.65rem] uppercase tracking-[0.3em] hover:text-[#ffcc33] transition-colors">Connect</a>
+        </div>
+    </nav>
+
+    <!-- Section 1: Cinematic Hero -->
+    <section id="home" class="justify-start items-center">
+        <div class="container mx-auto px-10 reveal">
+            <span class="gold-pill">Creative Director</span>
+            <h1 class="hero-font text-[12vw] md:text-[10vw] mb-4">THE<br><span class="italic text-[#ffcc33]">PORTFOLIO</span></h1>
+            <div class="accent-line"></div>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <p class="text-xl md:text-2xl font-light tracking-wide max-w-xl opacity-60">
+                    Anziio / MA <br>
+                    Crafting visual legacies through light and motion.
+                </p>
+                <div class="text-right">
+                    <p class="text-xs uppercase tracking-[0.5em] opacity-40 mb-2">Presented By</p>
+                    <p class="text-2xl font-black uppercase tracking-tighter">ANSHIF TK</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Silhouette -->
+    <section class="bg-[#050505]">
+        <div class="container mx-auto px-10 grid md:grid-cols-2 gap-20 items-center">
+            <div class="image-frame aspect-[4/5] reveal">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white/5 text-[15rem] font-black">A</span>
+                </div>
+            </div>
+            <div class="reveal">
+                <h2 class="hero-font text-6xl md:text-8xl mb-8 leading-none italic uppercase">A Story <br><span class="not-italic text-white">Worth Telling</span></h2>
+                <p class="text-lg leading-relaxed opacity-60 mb-10">
+                    Welcome to my portfolio! As an experienced mobile and wedding video editor, I don't just cut clips—I weave emotions. Passionate about bringing your stories to life through creative visuals and seamless coordination.
+                </p>
+                <a href="#about" class="text-xs uppercase tracking-[0.4em] border-b border-[#ffcc33] pb-2 text-[#ffcc33]">Explore the depth</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Core Identity -->
+    <section id="about" class="flex-col justify-center text-center">
+        <div class="max-w-5xl mx-auto px-10 reveal">
+            <h2 class="text-xs uppercase tracking-[0.8em] opacity-30 mb-16">The Introduction</h2>
+            <p class="hero-font text-4xl md:text-6xl leading-[1.1] mb-16">
+                I am <span class="italic text-[#ffcc33]">ANSHIF</span>, specializing in cinematic wedding edits and digital narratives. I deliver <span class="opacity-40">memorable experiences</span> from highlight reels to full-scale event management.
+            </p>
+            <div class="grid md:grid-cols-3 gap-12 text-left">
+                <div class="border-l border-white/10 pl-6">
+                    <h4 class="font-bold uppercase tracking-widest text-[0.7rem] mb-4 opacity-40">Duration</h4>
+                    <p class="text-2xl font-black">3+ YEARS</p>
+                </div>
+                <div class="border-l border-white/10 pl-6">
+                    <h4 class="font-bold uppercase tracking-widest text-[0.7rem] mb-4 opacity-40">Network</h4>
+                    <p class="text-2xl font-black italic underline decoration-[#ffcc33]">RENEX APP</p>
+                </div>
+                <div class="border-l border-white/10 pl-6">
+                    <h4 class="font-bold uppercase tracking-widest text-[0.7rem] mb-4 opacity-40">Community</h4>
+                    <p class="text-2xl font-black">IEDC MASC</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Services (Grid) -->
+    <section class="bg-white text-black">
+        <div class="container mx-auto px-10 w-full reveal">
+            <h2 class="hero-font text-7xl md:text-9xl mb-20 tracking-tighter uppercase">Crafts</h2>
+            <div class="grid md:grid-cols-3 gap-1px bg-black/10">
+                <div class="bg-white p-12 hover:bg-[#ffcc33] transition-colors group">
+                    <span class="text-4xl mb-8 block opacity-20">01</span>
+                    <h3 class="text-2xl font-black mb-4 uppercase">Mobile Editing</h3>
+                    <p class="opacity-60 text-sm leading-relaxed group-hover:text-black">High-impact social narratives, reels, and vertical promos designed for the digital age.</p>
+                </div>
+                <div class="bg-white p-12 hover:bg-[#ffcc33] transition-colors group">
+                    <span class="text-4xl mb-8 block opacity-20">02</span>
+                    <h3 class="text-2xl font-black mb-4 uppercase">Wedding Film</h3>
+                    <p class="opacity-60 text-sm leading-relaxed group-hover:text-black">Emotional, cinematic highlight reels that preserve the soul of your most sacred moments.</p>
+                </div>
+                <div class="bg-white p-12 hover:bg-[#ffcc33] transition-colors group">
+                    <span class="text-4xl mb-8 block opacity-20">03</span>
+                    <h3 class="text-2xl font-black mb-4 uppercase">Event Strategy</h3>
+                    <p class="opacity-60 text-sm leading-relaxed group-hover:text-black">End-to-end coordination for weddings, corporate celebrations, and live broadcasts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: The Showreel -->
+    <section>
+        <div class="container mx-auto px-10 w-full reveal">
+            <h2 class="text-xs uppercase tracking-[0.6em] opacity-40 mb-12 text-center">The Project Portfolio</h2>
+            <div class="image-frame aspect-video w-full max-w-5xl mx-auto flex items-center justify-center group cursor-pointer shadow-2xl">
+                <div class="btn-play">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors"></div>
+            </div>
+            <div class="mt-12 flex flex-wrap justify-center gap-8 text-[0.6rem] uppercase tracking-[0.3em] opacity-30">
+                <span>Wedding Reel</span>
+                <span>/</span>
+                <span>Corporate Event</span>
+                <span>/</span>
+                <span>Social Promo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Connect -->
+    <section id="contact" class="bg-[#050505]">
+        <div class="container mx-auto px-10 grid md:grid-cols-2 gap-20 w-full reveal">
+            <div>
+                <h2 class="hero-font text-7xl md:text-9xl mb-12 uppercase leading-none">LET'S<br><span class="italic text-[#ffcc33]">WORK</span></h2>
+                <div class="space-y-8">
+                    <div>
+                        <p class="text-[0.6rem] uppercase tracking-[0.4em] opacity-40 mb-1">Electronic Mail</p>
+                        <p class="text-2xl font-bold">anshishah66@gmail.com</p>
+                    </div>
+                    <div>
+                        <p class="text-[0.6rem] uppercase tracking-[0.4em] opacity-40 mb-1">The Gram</p>
+                        <p class="text-2xl font-bold">@anziio</p>
+                    </div>
+                    <div>
+                        <p class="text-[0.6rem] uppercase tracking-[0.4em] opacity-40 mb-1">Direct Line</p>
+                        <p class="text-2xl font-bold">+91 9074389868</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-end">
+                <div class="p-10 border border-white/10 bg-white/5 backdrop-blur-xl">
+                    <p class="hero-font text-4xl mb-8 italic">"Every frame is a heartbeat."</p>
+                    <p class="opacity-40 text-sm leading-relaxed">
+                        I am currently accepting select projects for 2026. If you have a story that needs a soul, reach out today.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Outro -->
+    <section class="h-[80vh] flex flex-col items-center justify-center text-center">
+        <div class="reveal">
+            <h2 class="hero-font text-[15vw] leading-none select-none opacity-10">FIN</h2>
+            <p class="text-xl italic font-light opacity-60 mt-[-2rem]">Thank you for your attention.</p>
+        </div>
+    </section>
+
+    <footer class="p-12 text-center border-t border-white/5">
+        <p class="text-[0.6rem] uppercase tracking-[0.8em] opacity-20">ANZIIO MMXXVI — ALL RIGHTS RESERVED</p>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Reveal Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
