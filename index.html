@@ -105,11 +105,24 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
 
+        .image-frame img, .image-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(110%);
+            transition: transform 0.8s ease;
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.05);
+        }
+
         .image-frame::after {
             content: '';
             position: absolute;
             inset: 0;
             background: linear-gradient(45deg, rgba(255,204,51,0.05), transparent);
+            pointer-events: none;
         }
 
         .gold-pill {
@@ -133,6 +146,29 @@
             background: var(--accent-gold);
             z-index: 101;
             width: 0%;
+        }
+
+        .video-container {
+            position: relative;
+            cursor: pointer;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+
+        .video-container.playing .video-overlay {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .btn-play {
@@ -183,17 +219,17 @@
         </div>
     </section>
 
-    <!-- Section 2: The Silhouette -->
-    <section class="bg-[#050505]">
-        <div class="container mx-auto px-10 grid md:grid-cols-2 gap-20 items-center">
-            <div class="image-frame aspect-[4/5] reveal">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-white/5 text-[15rem] font-black">A</span>
+    <!-- Section 2: The Silhouette (Side-by-side, Centered Vertically) -->
+    <section class="bg-[#050505] py-24">
+        <div class="container mx-auto px-10 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal flex justify-center lg:justify-end">
+                <div class="image-frame aspect-[4/5] w-full max-w-xs md:max-w-sm">
+                    <img src="assets/Anshif_pic.jpeg" alt="Anshif Portrait">
                 </div>
             </div>
-            <div class="reveal">
+            <div class="reveal text-center lg:text-left">
                 <h2 class="hero-font text-6xl md:text-8xl mb-8 leading-none italic uppercase">A Story <br><span class="not-italic text-white">Worth Telling</span></h2>
-                <p class="text-lg leading-relaxed opacity-60 mb-10">
+                <p class="text-lg leading-relaxed opacity-60 mb-10 max-w-2xl mx-auto lg:mx-0">
                     Welcome to my portfolio! As an experienced mobile and wedding video editor, I don't just cut clips—I weave emotions. Passionate about bringing your stories to life through creative visuals and seamless coordination.
                 </p>
                 <a href="#about" class="text-xs uppercase tracking-[0.4em] border-b border-[#ffcc33] pb-2 text-[#ffcc33]">Explore the depth</a>
@@ -249,15 +285,21 @@
         </div>
     </section>
 
-    <!-- Section 5: The Showreel -->
+    <!-- Section 5: The Project Portfolio (Updated with Video) -->
     <section>
         <div class="container mx-auto px-10 w-full reveal">
             <h2 class="text-xs uppercase tracking-[0.6em] opacity-40 mb-12 text-center">The Project Portfolio</h2>
-            <div class="image-frame aspect-video w-full max-w-5xl mx-auto flex items-center justify-center group cursor-pointer shadow-2xl">
-                <div class="btn-play">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <div class="video-container aspect-video w-full max-w-5xl mx-auto shadow-2xl group" id="videoPlayer">
+                <div class="video-overlay">
+                    <div class="btn-play">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
                 </div>
-                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors"></div>
+                <!-- Sample high-quality cinematic wedding video -->
+                <video id="mainVideo" class="w-full h-full object-cover" poster="">
+                    <source src="assets/🫳.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             <div class="mt-12 flex flex-wrap justify-center gap-8 text-[0.6rem] uppercase tracking-[0.3em] opacity-30">
                 <span>Wedding Reel</span>
@@ -277,15 +319,15 @@
                 <div class="space-y-8">
                     <div>
                         <p class="text-[0.6rem] uppercase tracking-[0.4em] opacity-40 mb-1">Electronic Mail</p>
-                        <p class="text-2xl font-bold">anshishah66@gmail.com</p>
+                        <a href="mailto:anshishah66@gmail.com" class="text-2xl font-bold hover:text-[#ffcc33] transition-colors inline-block">anshishah66@gmail.com</a>
                     </div>
                     <div>
                         <p class="text-[0.6rem] uppercase tracking-[0.4em] opacity-40 mb-1">The Gram</p>
-                        <p class="text-2xl font-bold">@anziio</p>
+                        <a href="https://instagram.com/anziio" target="_blank" class="text-2xl font-bold hover:text-[#ffcc33] transition-colors inline-block">@anziio</a>
                     </div>
                     <div>
                         <p class="text-[0.6rem] uppercase tracking-[0.4em] opacity-40 mb-1">Direct Line</p>
-                        <p class="text-2xl font-bold">+91 9074389868</p>
+                        <a href="tel:+919074389868" class="text-2xl font-bold hover:text-[#ffcc33] transition-colors inline-block">+91 9074389868</a>
                     </div>
                 </div>
             </div>
@@ -318,7 +360,8 @@
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
+            const bar = document.getElementById("progressBar");
+            if(bar) bar.style.width = scrolled + "%";
         };
 
         // Reveal Animations
@@ -336,6 +379,29 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Video Player Logic
+        const videoPlayer = document.getElementById('videoPlayer');
+        const mainVideo = document.getElementById('mainVideo');
+
+        if(videoPlayer && mainVideo) {
+            videoPlayer.addEventListener('click', () => {
+                if (mainVideo.paused) {
+                    mainVideo.play();
+                    videoPlayer.classList.add('playing');
+                    mainVideo.setAttribute('controls', 'true');
+                } else {
+                    mainVideo.pause();
+                    videoPlayer.classList.remove('playing');
+                }
+            });
+
+            mainVideo.onended = () => {
+                videoPlayer.classList.remove('playing');
+                mainVideo.removeAttribute('controls');
+                mainVideo.load(); // Reset to poster
+            };
+        }
     </script>
 </body>
 </html>
